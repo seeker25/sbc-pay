@@ -141,9 +141,9 @@ class BcolProfile:  # pylint:disable=too-few-public-methods
                 print('---------------------2------')
                 print(error.__dict__)
                 print('---------------------3------')
-                print(json.dumps(error))
                 print('--------------------111111-------')
                 print(getattr(error, 'info', 'nope'))
+                print('--------------------22-------')
                 print(getattr(error, 'desc', 'nope'))
             except Exception as exc:  # NOQA
                 print('-----------------*******----------')
