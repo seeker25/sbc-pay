@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Service to manage PayBC interaction."""
-
+import json
 from typing import Dict
 
 import ldap
@@ -137,9 +137,12 @@ class BcolProfile:  # pylint:disable=too-few-public-methods
             current_app.logger.warning(type(error))
             try:
                 print('---------------------------')
-                print(error.get('desc'))
-                print(error.get('info'))
+                print(json.dumps(error.__dict__))
+                print('--------------------111111-------')
+                print(getattr(error, 'info', 'nope'))
+                print(getattr(error, 'desc', 'nope'))
             except Exception as exc:  # NOQA
+                print('-----------------*******----------')
                 print(type(exc))
 
             raise BusinessException(Error.INVALID_CREDENTIALS) from error
