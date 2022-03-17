@@ -136,8 +136,10 @@ class BcolProfile:  # pylint:disable=too-few-public-methods
             current_app.logger.warning(error)
             current_app.logger.warning(type(error))
             try:
-                print('---------------------------')
-                print(json.dumps(error.__dict__))
+                print('---------------------2------')
+                print(error.__dict__)
+                print('---------------------3------')
+                print(json.dumps(error))
                 print('--------------------111111-------')
                 print(getattr(error, 'info', 'nope'))
                 print(getattr(error, 'desc', 'nope'))
