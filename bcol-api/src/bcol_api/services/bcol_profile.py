@@ -147,8 +147,6 @@ class BcolProfile:  # pylint:disable=too-few-public-methods
                 print('---------------------]2------')
 
                 print('---------------------3------')
-                print(json.loads(error))
-                print('--------------------111111-------')
                 print(json.loads(error.__repr__()))
             except Exception as exc:  # NOQA
                 print('-----------------*******----------')
