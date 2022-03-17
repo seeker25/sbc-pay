@@ -13,6 +13,7 @@
 # limitations under the License.
 """Service to manage PayBC interaction."""
 import json
+from http import HTTPStatus
 from typing import Dict
 
 import ldap
@@ -134,25 +135,10 @@ class BcolProfile:  # pylint:disable=too-few-public-methods
             ldap_conn.simple_bind_s(username, password)
         except Exception as error:  # NOQA
             current_app.logger.warning(error)
-            print('---------------------1------')
             print(type(error))
-            print('---------------------2------')
-            try:
-                print('---------------------2------')
-                print(error)
-                print('------------------1---2------')
-                print(dir(error))
-                print('------------------3---2------')
-                print(vars(error))
-                print('---------------------]2------')
+            print(str(error))
+            raise BusinessException(self._create_error_object('Invalid Credentials', str(error)))
 
-                print('---------------------3------')
-                print(json.loads(error.__repr__()))
-            except Exception as exc:  # NOQA
-                print('-----------------*******----------')
-                print(type(exc))
-
-            raise BusinessException(Error.INVALID_CREDENTIALS) from error
         finally:
             if ldap_conn:
                 ldap_conn.unbind_s()
@@ -181,3 +167,9 @@ class BcolProfile:  # pylint:disable=too-few-public-methods
             return country_info.alpha_2
 
         return country
+
+    @staticmethod
+    def _create_error_object(code: str, detail: str):
+        return type('obj', (object,),
+                    {'code': code, 'status': HTTPStatus.BAD_REQUEST,
+                     'detail': detail})()
