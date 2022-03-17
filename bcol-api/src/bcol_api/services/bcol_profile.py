@@ -139,8 +139,8 @@ class BcolProfile:  # pylint:disable=too-few-public-methods
                 print('---------------------------')
                 print(error.get('desc'))
                 print(error.get('info'))
-            except Exception as error:  # NOQA
-                print(type(error))
+            except Exception as exc:  # NOQA
+                print(type(exc))
 
             raise BusinessException(Error.INVALID_CREDENTIALS) from error
         finally:
