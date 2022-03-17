@@ -171,5 +171,5 @@ class BcolProfile:  # pylint:disable=too-few-public-methods
     @staticmethod
     def _create_error_object(code: str, detail: str):
         return type('obj', (object,),
-                    {'code': code, 'status': HTTPStatus.BAD_REQUEST,
-                     'detail': detail})()
+                    {'title': code, 'status': HTTPStatus.BAD_REQUEST,
+                     'details': detail})()
