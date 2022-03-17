@@ -134,6 +134,14 @@ class BcolProfile:  # pylint:disable=too-few-public-methods
             ldap_conn.simple_bind_s(username, password)
         except Exception as error:  # NOQA
             current_app.logger.warning(error)
+            current_app.logger.warning(type(error))
+            try:
+                print('---------------------------')
+                print(error.get('desc'))
+                print(error.get('info'))
+            except Exception as error:  # NOQA
+                print(type(error))
+
             raise BusinessException(Error.INVALID_CREDENTIALS) from error
         finally:
             if ldap_conn:
