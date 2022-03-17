@@ -134,9 +134,9 @@ class BcolProfile:  # pylint:disable=too-few-public-methods
             ldap_conn.simple_bind_s(username, password)
         except Exception as error:  # NOQA
             current_app.logger.warning(error)
-            print('---------------------5------')
-            current_app.logger.warning(type(error))
-            print('---------------------4------')
+            print('---------------------1------')
+            print(type(error))
+            print('---------------------2------')
             try:
                 print('---------------------2------')
                 print(error)
@@ -145,13 +145,11 @@ class BcolProfile:  # pylint:disable=too-few-public-methods
                 print('------------------3---2------')
                 print(vars(error))
                 print('---------------------]2------')
-                print(error.__dict__)
+
                 print('---------------------3------')
-                print(json.dumps(error))
+                print(json.loads(error))
                 print('--------------------111111-------')
-                print(getattr(error, 'info', 'nope'))
-                print('--------------------22-------')
-                print(getattr(error, 'desc', 'nope'))
+                print(json.loads(error.__repr__()))
             except Exception as exc:  # NOQA
                 print('-----------------*******----------')
                 print(type(exc))
