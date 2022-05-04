@@ -161,6 +161,7 @@ class RoutingSlipTask:  # pylint:disable=too-few-public-methods
 
                 inv = cls._create_nsf_invoice(cfs_account, routing_slip.number, payment_account)
                 # Reduce the NSF fee from remaining amount.
+                current_app.logger.debug(f'Receipt {routing_slip.number} - Setting remaining_amount to receipt {float(routing_slip.remaining_amount) - inv.total}')
                 routing_slip.remaining_amount = float(routing_slip.remaining_amount) - inv.total
                 routing_slip.save()
 
