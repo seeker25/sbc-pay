@@ -339,6 +339,10 @@ class Payment:  # pylint: disable=too-many-instance-attributes, too-many-public-
 
         data = cls.create_payment_report_details(purchases, data)
 
+        # Ensure we follow spec.
+        for invoice in data['items']:
+            del invoice['status_code_description']
+
         current_app.logger.debug('>search_purchase_history')
         return data
 
