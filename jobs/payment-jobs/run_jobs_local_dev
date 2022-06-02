@@ -1,0 +1,1 @@
+docker build -t "payment-jobs" . && docker run -it payment-jobs --network="bridge" -p5433:5433
