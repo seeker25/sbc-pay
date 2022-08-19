@@ -42,9 +42,11 @@ def create_app(run_mode=os.getenv('FLASK_ENV', 'production')):
         if app.config.get('SENTRY_DSN', None):
             sentry_sdk.init(
                 dsn=app.config.get('SENTRY_DSN'),
-                integrations=[FlaskIntegration()]
+                integrations=[FlaskIntegration()],
+                debug=True
             )
     app.logger.info(f'<<<< Starting Payment Jobs >>>>')
+    app.logger.error('ERROR SENTRY SEND OUT')
     db.init_app(app)
     ma.init_app(app)
 
