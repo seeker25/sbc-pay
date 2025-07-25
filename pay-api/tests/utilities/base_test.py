@@ -1170,7 +1170,7 @@ def factory_refunds_partial(
     created_by: str = "TEST_USER",
     created_name: str = "Test User",
     created_on: datetime = datetime.now(tz=timezone.utc),
-    is_credit: bool = None,
+    is_credit = None,
 ):
     """Return a RefundsPartial model."""
     if is_credit is None:
