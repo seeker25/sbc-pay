@@ -17,14 +17,8 @@
       "description": "Disable all automated updates for Postgres"
     },
     {
-      "matchManagers": ["poetry", "dockerfile"],
+      "matchManagers": ["poetry"],
       "postUpdateOptions": ["poetryLockUpdate"]
-    },
-    {
-      "matchManagers": ["dockerfile"],
-      "matchPackageNames": ["python"],
-      "matchUpdateTypes": ["major"],
-      "enabled": false
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
@@ -53,6 +47,18 @@
       "groupName": "pay-api dependents updates",
       "prPriority": -1,
       "dependencyDashboardApproval": true
+    },
+    {
+      "matchManagers": ["dockerfile"],
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["python"],
+      "matchFileNames": ["**/*"],
+      "enabled": false,
+      "description": "Disable Python Docker image updates everywhere"
+    },
+    {
+      "matchPackageNames": ["ruff"],
+      "rangeStrategy": "pin"
     }
   ],
   "vulnerabilityAlerts": {
